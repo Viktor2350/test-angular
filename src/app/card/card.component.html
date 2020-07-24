@@ -1,0 +1,17 @@
+<div class="example-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Поиск</mat-label>
+    <input matInput [(ngModel)]="searchN" />
+  </mat-form-field>
+</div>
+<div class="card-div">
+  <button class="btn" (click)="searchNews()">Get News</button>
+</div>
+<div *ngIf="response">
+  <h1 *ngFor="let title of titles | search: searchN">{{ title }}</h1>
+  <img *ngFor="let url of urlToImage" src="{{ url }}" alt="news" (click)="goToPage('newsCard')" />
+</div>
+<div>
+  <ngb-pagination class="d-flex justify-content-center" [collectionSize]="20" [(page)]="page" [boundaryLinks]="true">
+  </ngb-pagination>
+</div>
